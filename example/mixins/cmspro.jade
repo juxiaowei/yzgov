@@ -1,0 +1,46 @@
+//-cms普通ul列表
+mixin cms_documents_ul(num,start,code,f_num, classname)
+  ul(class=classname)
+    <CMSPRO_DOCUMENTS DOCUMENTTYPE="0|1|2|3" NUM="#{num}" STARTPOS="#{start}" PAGESIZE="0" CHANNELCODE="#{code}">
+    <li><CMSPRO_DOCUMENT FIELD="title" AUTOLINK="true" LINKALT="true" NUM="#{f_num}">标题</CMSPRO_DOCUMENT><span><CMSPRO_DOCUMENT FIELD=" publishedTime " DATEFORMAT="yyyy-MM-dd">发布时间</CMSPRO_DOCUMENT></span></li>
+    </CMSPRO_DOCUMENTS>
+//-cms普通li列表
+mixin cms_documents_li(num,start,code,f_num)
+  <CMSPRO_DOCUMENTS DOCUMENTTYPE="0|1|2|3" NUM="#{num}" STARTPOS="#{start}" PAGESIZE="0" CHANNELCODE="#{code}">
+  li <CMSPRO_DOCUMENT FIELD="title" AUTOLINK="true" LINKALT="true" NUM="#{f_num}">标题</CMSPRO_DOCUMENT>
+  </CMSPRO_DOCUMENTS>
+//-cms 获取稿件内容
+mixin cms_documents_content()
+  <CMSPRO_DOCUMENTS DOCUMENTTYPE="0|1|2|3" NUM="1" STARTPOS="0" PAGESIZE="0">
+  <CMSPRO_DOCUMENT FIELD="content">内容</CMSPRO_DOCUMENT>
+  </CMSPRO_DOCUMENTS>
+//-cms 获取栏目头条内容
+mixin cms_documents_content_a(code,num,text)
+  <CMSPRO_DOCUMENTS DOCUMENTTYPE="0|1|2|3" NUM="1" STARTPOS="0" PAGESIZE="0" CHANNELCODE="#{code}">
+  <CMSPRO_DOCUMENT FIELD="content" NUM="#{num}">内容</CMSPRO_DOCUMENT><a href="<CMSPRO_DOCUMENT FIELD='url'></CMSPRO_DOCUMENT>" target="_blank">!{text}</a> 
+  </CMSPRO_DOCUMENTS>
+//-cms 获取栏目
+mixin cms_documents_channel()
+  <CMSPRO_CHANNEL FIELD='channelName'>栏目标题</CMSPRO_CHANNEL>
+//-cms 获取栏目带链接
+mixin cms_documents_channel_a(code,num)
+  <CMSPRO_CHANNEL CODE='#{code}' FIELD='channelName' AUTOLINK="true" NUM="#{num}" TARGET="_blank">栏目标题</CMSPRO_CHANNEL>
+//-cms 获取include 嵌入模板
+mixin cms_documents_template(code)
+  <CMSPRO_TEMPLATE PUBLISHEDTEMPNAME="#{code}"></CMSPRO_TEMPLATE>
+//-cms 获取a标签更多
+mixin cms_documents_more(code,title)
+  <a href="<CMSPRO_CHANNEL CODE='#{code}' FIELD='url'></CMSPRO_CHANNEL>" target="_blank">!{title}</a>
+//-cms 获取a标签更多
+mixin cms_documents_website()
+  <CMSPRO_WEBSITE FIELD='name'>站点名称</CMSPRO_WEBSITE>
+//-cms 获取当前位置
+mixin cms_documents_location()
+  <CMSPRO_LOCATION LINK=" &gt; " SELFONLY="false" AUTOLINK="true" TARGET="_blank" HOMEPAGEDESC="首页">当前位置</CMSPRO_LOCATION>
+//-css引入 mixin
+mixin link(directory)
+  link(href=directory type='text/css' rel="stylesheet")
+//-script引入 mixin
+mixin script(directory,a)
+  //- attributes == {main: "btn"}
+  link(data-main!=attributes.main,type="text/javascript" src=directory)
