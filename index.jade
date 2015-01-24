@@ -7,19 +7,16 @@ block title
 block link
   +link('www/css/css.css')
   +script('js.js')(main="www/script/yzgov")
-  style.
-    body{
-      font-size:12px;
-    }
-    .border{
-      border-left:solid 1px #ccc;
-      width:1px;
-      height:100px;
-      margin:10px 10px;
-    }
 //- 头部
 block top
 //- 正文主体
 block content
-  .border 
-    
+    //- body begin
+    .container
+      //left begin
+      .left.news-left 
+        +cms_documents_ul('3','0','news','14')
+      //right begin
+      .right.new-right
+        ul.item
+          +cms_documents_li('2','0','','18')
